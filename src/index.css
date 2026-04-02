@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #050B12;
+    --surface: rgba(255, 255, 255, 0.03);
+    --surface2: rgba(255, 255, 255, 0.06);
+    --border: rgba(255, 255, 255, 0.08);
+    --border2: rgba(255, 255, 255, 0.14);
+    --cyan: #00E5FF;
+    --purple: #7C3AED;
+    --green: #10B981;
+    --amber: #F59E0B;
+    --pink: #F72585;
+    --text: #E8F4F8;
+    --muted: #5A8090;
+  }
+
+  body {
+    @apply bg-[var(--bg)] text-[var(--text)] font-sans antialiased overflow-x-hidden;
+  }
+
+  /* Animated gradient mesh on hero/landing backgrounds */
+  .bg-mesh {
+    background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at bottom right, rgba(124, 58, 237, 0.15) 0%, transparent 40%),
+      var(--bg);
+  }
+
+  /* Fixed background grid */
+  .bg-grid {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: center center;
+  }
+
+  /* Typography */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+@layer components {
+
+  /* Cards */
+  .glass-card {
+    @apply bg-[var(--surface)] border border-[var(--border)] rounded-[16px] backdrop-blur-sm transition-all duration-300;
+  }
+
+  .glass-card:hover {
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.3);
+    border-color: rgba(0, 229, 255, 0.3);
+  }
+
+  .glass-card-purple:hover {
+    box-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
+    border-color: rgba(124, 58, 237, 0.3);
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply px-6 py-3 rounded-full bg-[var(--cyan)] text-black font-semibold transition-all duration-300 transform inline-flex items-center justify-center gap-2;
+  }
+
+  .btn-primary:hover {
+    @apply -translate-y-[2px];
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+  }
+
+  .btn-ghost {
+    @apply px-6 py-3 rounded-full bg-transparent border border-[var(--border2)] text-[var(--text)] font-semibold transition-all duration-300 transform inline-flex items-center justify-center gap-2;
+  }
+
+  .btn-ghost:hover {
+    @apply -translate-y-[2px] bg-[var(--surface2)] border-[var(--border2)];
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Progress bars gradient fill */
+  .progress-fill {
+    @apply bg-gradient-to-r from-[var(--cyan)] to-[var(--purple)];
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+}
