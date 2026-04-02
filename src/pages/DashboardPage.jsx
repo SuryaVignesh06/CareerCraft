@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Map, Bot, FileText, Home, ChevronRight, Flame, Zap, Target, CheckCircle, Trophy, LogOut, Lock, BookOpen, Sparkles } from 'lucide-react';
+import { Map, Bot, FileText, Home, ChevronRight, Flame, Zap, Target, CheckCircle, Trophy, LogOut, Lock, BookOpen, Sparkles, Star } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { roadmapData, careerMeta, getNextNode, getProgress } from '../data/roadmaps';
 
@@ -278,6 +278,27 @@ export default function DashboardPage() {
                         </motion.div>
                     </div>
                 </div>
+
+                {/* Quick Tools & Features */}
+                <motion.div className="mt-12" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
+                    <h2 className="text-2xl font-bold text-white mb-6">Quick Tools & Features</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {[
+                            { title: 'Interview Failure Analyzer', icon: '🔁', desc: 'AI breakdown of why you failed and how to fix it.', star: true, link: '/analyzer' },
+                            { title: 'AI Mentor', icon: '🤖', desc: '24/7 personal tutor for code stucks and careers.', link: '/mentor' },
+                            { title: 'ATS Resume Builder', icon: '📄', desc: 'Format your projects to beat company filters.', link: '/resume' },
+                            { title: 'Smart Career Roadmap', icon: '🗺️', desc: 'Step-by-step personalized learning paths.', link: '/roadmap' },
+                            { title: 'XP & Gamification', icon: '🎮', desc: 'Earn XP, badges and stay on a hot streak.', link: '#' }
+                        ].map((f, i) => (
+                            <Link to={f.link} key={i} className={`glass-card p-6 flex flex-col gap-3 group relative overflow-hidden transition-all hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(0,229,255,0.15)] ${f.star ? 'border-[var(--cyan)]/40 shadow-[0_0_15px_rgba(0,229,255,0.05)]' : ''}`}>
+                                {f.star && <div className="absolute top-0 right-0 p-2 text-yellow-400"><Star size={16} fill="currentColor" /></div>}
+                                <div className="text-3xl group-hover:scale-110 transition-transform">{f.icon}</div>
+                                <h3 className="font-bold text-lg text-white group-hover:text-[var(--cyan)] transition-colors">{f.title}</h3>
+                                <p className="text-sm text-[var(--muted)]">{f.desc}</p>
+                            </Link>
+                        ))}
+                    </div>
+                </motion.div>
             </main>
         </div>
     );

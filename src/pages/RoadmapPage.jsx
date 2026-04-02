@@ -196,12 +196,25 @@ export default function RoadmapPage() {
                                                         >
                                                             <p className="text-xs text-[var(--muted)] mb-3 font-medium uppercase tracking-widest">Recommended Resources</p>
                                                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                                                {node.resources.map((r, i) => (
-                                                                    <div key={i} className="flex items-center gap-2 text-sm text-[var(--cyan)] hover:text-white transition-colors cursor-pointer px-3 py-2 rounded-xl bg-[var(--surface2)] hover:bg-[var(--surface)] group">
-                                                                        <ExternalLink size={13} />
-                                                                        <span>{r}</span>
-                                                                    </div>
-                                                                ))}
+                                                                {node.resources.map((r, i) => {
+                                                                    const urlMatch = r.match(/\(?(https?:\/\/[^\s)]+)\)?/);
+                                                                    const url = urlMatch ? urlMatch[1] : null;
+                                                                    const label = r.replace(/\s*\(https?:\/\/[^\s)]+\)/, '').trim();
+                                                                    const isTeachy = label.toLowerCase().includes('teachytechie');
+                                                                    return url ? (
+                                                                        <a key={i} href={url} target="_blank" rel="noopener noreferrer"
+                                                                            className={`flex items-center gap-2 text-sm transition-all px-3 py-2 rounded-xl group ${isTeachy ? 'bg-[var(--cyan)]/10 border border-[var(--cyan)]/30 text-[var(--cyan)] hover:bg-[var(--cyan)]/20' : 'bg-[var(--surface2)] text-[var(--muted)] hover:text-white hover:bg-[var(--surface)]'}`}>
+                                                                            <ExternalLink size={13} className="shrink-0" />
+                                                                            <span className="flex-1">{label}</span>
+                                                                            {isTeachy && <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-[var(--cyan)]/20 text-[var(--cyan)]">⭐ Featured</span>}
+                                                                        </a>
+                                                                    ) : (
+                                                                        <div key={i} className="flex items-center gap-2 text-sm text-[var(--muted)] px-3 py-2 rounded-xl bg-[var(--surface2)]">
+                                                                            <BookOpen size={13} className="shrink-0" />
+                                                                            <span>{r}</span>
+                                                                        </div>
+                                                                    );
+                                                                })}
                                                             </div>
                                                             {status === 'active' && (
                                                                 <button
