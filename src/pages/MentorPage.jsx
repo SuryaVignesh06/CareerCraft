@@ -1,12 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Home, Map, Bot, FileText, Send, Sparkles, User } from 'lucide-react';
+import { Home, Map, Bot, FileText, Send, User, Menu, Award, Briefcase, Code } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 
 const navItems = [
     { icon: Home, label: 'Home', path: '/dashboard' },
     { icon: Map, label: 'Roadmap', path: '/roadmap' },
     { icon: Bot, label: 'AI Mentor', path: '/mentor' },
+    { icon: Award, label: 'Certifications', path: '/certifications' },
+    { icon: Briefcase, label: 'Internships', path: '/internships' },
+    { icon: Code, label: 'Visualizer', path: '/visualizer' },
     { icon: FileText, label: 'Analyzer', path: '/analyzer' },
     { icon: FileText, label: 'Resume', path: '/resume' },
 ];
@@ -15,16 +19,10 @@ const suggestions = [
     "What should I learn after React?",
     "How do I prepare for a DSA interview?",
     "Which companies hire freshers for ₹8L+?",
-    "Explain closures in JavaScript",
-    "What's the difference between REST and GraphQL?",
+    "Explain closures in JavaScript"
 ];
 
-const initialMessages = [
-    {
-        role: 'assistant',
-        text: "Hey! 👋 I'm your AI Career Mentor. I know your roadmap, your current progress, and the Indian job market. Ask me anything — coding doubts, career advice, interview prep, or how to ace your next application.",
-    }
-];
+const initialMessages = [];
 
 export default function MentorPage() {
     const [messages, setMessages] = useState(initialMessages);
@@ -34,26 +32,37 @@ export default function MentorPage() {
 
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, [messages]);
+    }, [messages, loading]);
 
-    const getAIResponse = (question) => {
-        const q = question.toLowerCase();
-        if (q.includes('react') || q.includes('next')) return "After React, I'd recommend diving into **Next.js** for SSR/SSG, then **TypeScript** to make your code production-grade. Based on your current roadmap you're at 45% progress on React — complete the hooks section first, then move to state management with Zustand. Estimated time: 2 more weeks. 🚀";
-        if (q.includes('dsa') || q.includes('interview') || q.includes('algo')) return "For DSA interview prep with Indian companies: \n\n1. **Striver's A-Z Sheet** — 450 curated problems\n2. Focus on Arrays, Strings, Trees, Graphs (these dominate FAANG interviews)\n3. Practice LC Medium daily — target 2 problems/day\n4. For Zoho/TCS-level: focus on patterns over brute force\n\nRealistic timeline for fresher: 3-4 months of consistent practice. 💪";
-        if (q.includes('salary') || q.includes('₹') || q.includes('lpa') || q.includes('company')) return "For ₹8L+ fresher roles, target: **Swiggy, Zepto, Razorpay, Groww, CRED**. These companies hire freshers at ₹8-14L with strong DSA + 1-2 good projects. Requirements: LC 200+ problems, 2+ deployed projects, and a clean GitHub. Your Full Stack path is perfect for these. Want me to build you a 90-day plan?";
-        if (q.includes('closure')) return "A **closure** is a function that 'remembers' its outer scope even after the outer function has returned.\n\n```js\nfunction makeCounter() {\n  let count = 0;\n  return function() {\n    count++;\n    return count;\n  };\n}\nconst counter = makeCounter();\ncounter(); // 1\ncounter(); // 2\n```\nPractical use: private variables, factory functions, event handlers. This is a popular JS interview question — be ready to explain memory implications too!";
-        if (q.includes('rest') || q.includes('graphql')) return "**REST vs GraphQL:**\n\n- **REST**: Multiple endpoints, each returning fixed data. Simple, widely used. Great for CRUD apps.\n- **GraphQL**: Single endpoint, client requests exactly what it needs. Avoids over-fetching.\n\nFor Indian startups, REST is still #1. Learning GraphQL is a bonus but not required for fresher roles. Stick with REST + practice building clean REST APIs with Node.js first! 🎯";
-        return "Great question! Based on your Full Stack roadmap and current progress, here's what I recommend: focus on completing your current React module before branching out. The more you understand React patterns deeply, the easier the rest of the stack becomes. Want me to suggest specific resources, or explain a particular concept? 🤔";
+    const getAIResponse = async (chatMessages) => {
+        try {
+            const response = await fetch('http://localhost:5000/api/chat', {
+                 method: 'POST',
+                 headers: { 'Content-Type': 'application/json' },
+                 body: JSON.stringify({ messages: chatMessages })
+            });
+            const data = await response.json();
+            if (data.response) {
+                 return data.response;
+            } else {
+                 return "Sorry, I encountered an error. Please check the backend.";
+            }
+        } catch (error) {
+            console.error("Backend Error:", error);
+            return "Please ensure the Python backend is running on port 5000.";
+        }
     };
 
     const sendMessage = async (text = input) => {
         if (!text.trim()) return;
         const userMsg = { role: 'user', text };
-        setMessages(prev => [...prev, userMsg]);
+        const newMessages = [...messages, userMsg];
+        setMessages(newMessages);
         setInput('');
         setLoading(true);
-        await new Promise(r => setTimeout(r, 1200));
-        const aiResponse = getAIResponse(text);
+
+        const aiResponse = await getAIResponse(newMessages);
+        
         setMessages(prev => [...prev, { role: 'assistant', text: aiResponse }]);
         setLoading(false);
     };
@@ -61,102 +70,120 @@ export default function MentorPage() {
     return (
         <div className="min-h-screen bg-[var(--bg)] flex">
             {/* Sidebar */}
-            <aside className="w-64 shrink-0 border-r border-[var(--border)] bg-[var(--surface)] flex flex-col py-6 px-4 gap-2 fixed h-full z-30">
-                <Link to="/" className="flex items-center gap-2 px-3 mb-6">
+            <aside className="w-64 shrink-0 border-r border-[#2A2B32] bg-[#171717]/80 flex flex-col py-6 px-4 gap-2 fixed h-full z-30">
+                <Link to="/" className="flex items-center gap-2 px-3 mb-8">
                     <span className="font-heading text-xl font-bold text-white">CareerCraft</span>
                     <span className="w-2 h-2 ml-2 rounded-full bg-[var(--cyan)]" />
                 </Link>
                 {navItems.map(({ icon: Icon, label, path }) => (
-                    <Link key={path} to={path} className={`flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-all ${path === '/mentor' ? 'bg-[var(--cyan)]/10 text-[var(--cyan)] border border-[var(--cyan)]/20' : 'text-[var(--muted)] hover:text-white hover:bg-[var(--surface2)]'}`}>
+                    <Link key={path} to={path} className={`flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-all ${path === '/mentor' ? 'bg-[#2A2B32] text-white' : 'text-[#A1A1AA] hover:text-white hover:bg-[#2A2B32]/50'}`}>
                         <Icon size={18} />{label}
                     </Link>
                 ))}
             </aside>
 
-            <main className="ml-64 flex-1 flex flex-col h-screen overflow-hidden">
+            {/* Chat Area - ChatGPT Style */}
+            <main className="ml-64 flex-1 flex flex-col h-screen bg-[#212121] overflow-hidden">
                 {/* Header */}
-                <div className="px-8 py-5 border-b border-[var(--border)] flex items-center gap-3 bg-[var(--bg)]">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--purple)] flex items-center justify-center">
-                        <Sparkles size={18} className="text-white" />
-                    </div>
-                    <div>
-                        <div className="font-bold text-white">AI Career Mentor</div>
-                        <div className="text-xs text-[var(--green)] flex items-center gap-1">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[var(--green)] animate-pulse inline-block" /> Online — Ready to help
-                        </div>
+                <div className="flex items-center justify-between px-4 py-3 text-white border-b border-[#2A2B32] md:hidden">
+                    <div className="flex items-center gap-2">
+                        <Bot size={24} />
+                        <span className="font-medium">CareerCraft GPT</span>
                     </div>
                 </div>
 
-                {/* Messages */}
-                <div className="flex-1 overflow-y-auto px-8 py-6 flex flex-col gap-4">
-                    {messages.map((msg, i) => (
-                        <motion.div
-                            key={i}
-                            className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                        >
-                            {msg.role === 'assistant' && (
-                                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--purple)] flex items-center justify-center shrink-0 mt-1">
-                                    <Sparkles size={14} className="text-white" />
+                {/* Messages Container */}
+                <div className="flex-1 overflow-y-auto px-4 w-full">
+                    <div className="max-w-3xl mx-auto flex flex-col pt-8 pb-32">
+                        {messages.length === 0 ? (
+                            <div className="flex flex-col items-center justify-center h-full text-center mt-20">
+                                <div className="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center mb-6">
+                                    <Bot size={32} />
                                 </div>
-                            )}
-                            <div className={`max-w-2xl px-5 py-4 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap ${msg.role === 'user'
-                                ? 'bg-[var(--cyan)] text-black font-medium rounded-tr-sm'
-                                : 'bg-[var(--surface)] border border-[var(--border)] text-[var(--text)] rounded-tl-sm'
-                                }`}>
-                                {msg.text}
-                            </div>
-                            {msg.role === 'user' && (
-                                <div className="w-8 h-8 rounded-full bg-[var(--surface2)] border border-[var(--border)] flex items-center justify-center shrink-0 mt-1">
-                                    <User size={14} className="text-[var(--muted)]" />
+                                <h2 className="text-2xl font-semibold text-white mb-8">How can I help you today?</h2>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full max-w-2xl px-4">
+                                    {suggestions.map((s, idx) => (
+                                        <button 
+                                            key={idx} 
+                                            onClick={() => sendMessage(s)}
+                                            className="text-left px-4 py-3 rounded-xl border border-[#424242] text-[#ececec] text-sm hover:bg-[#2f2f2f] transition-colors"
+                                        >
+                                            {s}
+                                        </button>
+                                    ))}
                                 </div>
-                            )}
-                        </motion.div>
-                    ))}
-                    {loading && (
-                        <div className="flex gap-3">
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[var(--cyan)] to-[var(--purple)] flex items-center justify-center shrink-0">
-                                <Sparkles size={14} className="text-white" />
                             </div>
-                            <div className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl rounded-tl-sm px-5 py-4 flex gap-1 items-center">
-                                {[0, 1, 2].map(i => (
-                                    <span key={i} className="w-1.5 h-1.5 rounded-full bg-[var(--cyan)] animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />
-                                ))}
+                        ) : (
+                            messages.map((msg, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className={`flex w-full mb-6 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                                >
+                                    {msg.role === 'assistant' ? (
+                                        <div className="flex gap-4 w-full">
+                                            <div className="w-8 h-8 rounded-full border border-gray-600 flex items-center justify-center shrink-0 mt-1 md:mt-0 bg-[#fff] text-black">
+                                                <Bot size={18} />
+                                            </div>
+                                            <div className="text-[#ececec] text-[15px] leading-relaxed max-w-full overflow-hidden prose prose-invert prose-p:leading-relaxed prose-pre:bg-[#0d1117] prose-pre:border prose-pre:border-gray-700">
+                                                <ReactMarkdown>{msg.text}</ReactMarkdown>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <div className="bg-[#2f2f2f] text-[#ececec] px-5 py-3 rounded-2xl max-w-[85%] md:max-w-[70%] text-[15px] leading-relaxed whitespace-pre-wrap">
+                                            {msg.text}
+                                        </div>
+                                    )}
+                                </motion.div>
+                            ))
+                        )}
+                        {loading && (
+                            <div className="flex w-full mb-6 justify-start">
+                                <div className="flex gap-4 w-full">
+                                    <div className="w-8 h-8 rounded-full border border-gray-600 flex items-center justify-center shrink-0 bg-[#fff] text-black">
+                                        <Bot size={18} />
+                                    </div>
+                                    <div className="flex gap-1 items-center h-8">
+                                        <span className="w-2 h-2 rounded-full bg-gray-400 animate-bounce text-sm" style={{ animationDelay: '0ms' }} />
+                                        <span className="w-2 h-2 rounded-full bg-gray-400 animate-bounce text-sm" style={{ animationDelay: '150ms' }} />
+                                        <span className="w-2 h-2 rounded-full bg-gray-400 animate-bounce text-sm" style={{ animationDelay: '300ms' }} />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    )}
-                    <div ref={bottomRef} />
+                        )}
+                        <div ref={bottomRef} className="h-4" />
+                    </div>
                 </div>
 
-                {/* Suggestions */}
-                {messages.length <= 1 && (
-                    <div className="px-8 pb-3 flex gap-2 flex-wrap">
-                        {suggestions.map((s, i) => (
-                            <button key={i} onClick={() => sendMessage(s)} className="text-xs px-3 py-1.5 rounded-full border border-[var(--border)] text-[var(--muted)] hover:text-[var(--cyan)] hover:border-[var(--cyan)]/40 transition-all">
-                                {s}
+                {/* Input Area */}
+                <div className="w-full bg-gradient-to-t from-[#212121] via-[#212121] to-transparent pt-6 pb-6 px-4 absolute bottom-0 left-0 md:left-64 right-0">
+                    <div className="max-w-3xl mx-auto relative">
+                        <div className="bg-[#2f2f2f] border border-[#424242] rounded-[24px] flex items-end p-2 px-4 shadow-lg focus-within:bg-[#383838] transition-colors">
+                            <textarea
+                                value={input}
+                                onChange={(e) => setInput(e.target.value)}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' && !e.shiftKey) {
+                                        e.preventDefault();
+                                        sendMessage();
+                                    }
+                                }}
+                                placeholder="Message CareerCraft..."
+                                className="flex-1 bg-transparent text-[#ececec] p-2 max-h-48 resize-none focus:outline-none min-h-[44px] text-[15px] placeholder:text-[#9b9b9b]"
+                                rows={1}
+                            />
+                            <button
+                                onClick={() => sendMessage()}
+                                disabled={!input.trim() || loading}
+                                className="mb-1 ml-2 w-9 h-9 flex items-center justify-center bg-white text-black rounded-full disabled:bg-[#424242] disabled:text-[#757575] transition-colors shrink-0 hover:bg-gray-200"
+                            >
+                                <Send size={16} className={input.trim() ? "translate-x-[1px]" : ""} />
                             </button>
-                        ))}
-                    </div>
-                )}
-
-                {/* Input */}
-                <div className="px-8 py-5 border-t border-[var(--border)] bg-[var(--bg)]">
-                    <div className="flex gap-3">
-                        <input
-                            value={input}
-                            onChange={e => setInput(e.target.value)}
-                            onKeyDown={e => e.key === 'Enter' && !e.shiftKey && sendMessage()}
-                            placeholder="Ask me anything about your career..."
-                            className="flex-1 bg-[var(--surface)] border border-[var(--border)] rounded-2xl px-5 py-3.5 text-white placeholder:text-[var(--muted)] focus:outline-none focus:border-[var(--cyan)] transition-colors text-sm"
-                        />
-                        <button
-                            onClick={() => sendMessage()}
-                            disabled={!input.trim() || loading}
-                            className="w-12 h-12 rounded-2xl bg-[var(--cyan)] flex items-center justify-center text-black disabled:opacity-40 transition-all hover:shadow-[0_0_15px_rgba(0,229,255,0.4)]"
-                        >
-                            <Send size={18} />
-                        </button>
+                        </div>
+                        <div className="text-center text-xs text-[#9b9b9b] mt-3">
+                            CareerCraft AI can make mistakes. Consider verifying important information.
+                        </div>
                     </div>
                 </div>
             </main>

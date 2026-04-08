@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Map, Bot, FileText, Upload, AlertCircle, CheckCircle, TrendingUp, ChevronDown } from 'lucide-react';
+import { Home, Map, Bot, FileText, Upload, AlertCircle, CheckCircle, TrendingUp, ChevronDown, Award, Briefcase, Code } from 'lucide-react';
 
 const navItems = [
     { icon: Home, label: 'Home', path: '/dashboard' },
     { icon: Map, label: 'Roadmap', path: '/roadmap' },
     { icon: Bot, label: 'AI Mentor', path: '/mentor' },
+    { icon: Award, label: 'Certifications', path: '/certifications' },
+    { icon: Briefcase, label: 'Internships', path: '/internships' },
+    { icon: Code, label: 'Visualizer', path: '/visualizer' },
     { icon: FileText, label: 'Analyzer', path: '/analyzer' },
     { icon: FileText, label: 'Resume', path: '/resume' },
 ];

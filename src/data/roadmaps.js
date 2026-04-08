@@ -10,6 +10,39 @@ export const careerMeta = {
     mobile:    { label: 'Mobile Dev', emoji: '📱', color: '#8B5CF6', salary: '₹5L – ₹12L' },
 };
 
+export const careerCertificationsData = {
+    fullstack: [
+        { title: 'Meta Front-End Developer', provider: 'Coursera', url: 'https://www.coursera.org/professional-certificates/meta-front-end-developer', icon: '⚛️' },
+        { title: 'IBM Full Stack Developer', provider: 'Coursera', url: 'https://www.coursera.org/professional-certificates/ibm-full-stack-cloud-developer', icon: '🌐' },
+        { title: 'AWS Certified Developer', provider: 'AWS', url: 'https://aws.amazon.com/certification/certified-developer-associate/', icon: '☁️' }
+    ],
+    aiml: [
+        { title: 'DeepLearning.AI TensorFlow', provider: 'Coursera', url: 'https://www.coursera.org/professional-certificates/tensorflow-in-practice', icon: '🧠' },
+        { title: 'AWS Machine Learning', provider: 'AWS', url: 'https://aws.amazon.com/certification/certified-machine-learning-specialty/', icon: '🤖' },
+        { title: 'IBM AI Engineering', provider: 'Coursera', url: 'https://www.coursera.org/professional-certificates/ai-engineer', icon: '⚡' }
+    ],
+    data: [
+        { title: 'Google Data Analytics', provider: 'Coursera', url: 'https://www.coursera.org/professional-certificates/google-data-analytics', icon: '📊' },
+        { title: 'IBM Data Science', provider: 'Coursera', url: 'https://www.coursera.org/professional-certificates/ibm-data-science', icon: '🔬' },
+        { title: 'Microsoft Power BI Analyst', provider: 'Microsoft', url: 'https://learn.microsoft.com/en-us/credentials/certifications/data-analyst-associate/', icon: '📈' }
+    ],
+    devops: [
+        { title: 'AWS Solutions Architect', provider: 'AWS', url: 'https://aws.amazon.com/certification/certified-solutions-architect-associate/', icon: '☁️' },
+        { title: 'Certified Kubernetes Admin', provider: 'CNCF', url: 'https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/', icon: '⛴️' },
+        { title: 'Terraform Associate', provider: 'HashiCorp', url: 'https://www.hashicorp.com/certification/terraform-associate', icon: '🏗️' }
+    ],
+    cyber: [
+        { title: 'CompTIA Security+', provider: 'CompTIA', url: 'https://www.comptia.org/certifications/security', icon: '🛡️' },
+        { title: 'Certified Ethical Hacker', provider: 'EC-Council', url: 'https://www.eccouncil.org/programs/certified-ethical-hacker-ceh/', icon: '🥷' },
+        { title: 'eJPT Certification', provider: 'INE', url: 'https://ine.com/learning/certifications/internal/ejpt', icon: '🔐' }
+    ],
+    mobile: [
+        { title: 'Meta Android Developer', provider: 'Coursera', url: 'https://www.coursera.org/professional-certificates/meta-android-developer', icon: '📱' },
+        { title: 'Meta iOS Developer', provider: 'Coursera', url: 'https://www.coursera.org/professional-certificates/meta-ios-developer', icon: '🍎' },
+        { title: 'Associate Android Developer', provider: 'Google', url: 'https://developer.android.com/certification', icon: '🤖' }
+    ]
+};
+
 // ─── Post-completion: Job Roles, Job Boards & Resume Tips ─────────────────────
 export const careerCompletionData = {
     fullstack: {
@@ -80,36 +113,36 @@ export const roadmapData = {
             phase: 'Foundation',
             color: 'var(--green)',
             items: [
-                { id: 'fs1', title: 'HTML & CSS Fundamentals', xp: 200, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'FreeCodeCamp HTML/CSS', 'CSS Tricks Guide', 'Kevin Powell YouTube'] },
-                { id: 'fs2', title: 'JavaScript Essentials', xp: 350, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'javascript.info', 'Akshay Saini JS Playlist', 'You Don\'t Know JS (Book)'] },
-                { id: 'fs3', title: 'Git & Version Control', xp: 150, time: '1 week', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Git Documentation', 'The Odin Project Git'] },
+                { id: 'fs1', title: 'HTML & CSS Fundamentals', xp: 200, time: '2 weeks', resources: ['ClassCentral HTML/CSS (https://www.classcentral.com/subject/html5)', 'TeachyTechie (https://www.teachytechie.com/)', 'FreeCodeCamp HTML/CSS', 'CSS Tricks Guide'] },
+                { id: 'fs2', title: 'JavaScript Essentials', xp: 350, time: '3 weeks', resources: ['ClassCentral JavaScript (https://www.classcentral.com/subject/javascript)', 'TeachyTechie (https://www.teachytechie.com/)', 'javascript.info', 'Akshay Saini JS'] },
+                { id: 'fs3', title: 'Git & Version Control', xp: 150, time: '1 week', resources: ['ClassCentral Git (https://www.classcentral.com/subject/git)', 'TeachyTechie (https://www.teachytechie.com/)', 'Git Documentation', 'The Odin Project Git'] },
             ]
         },
         {
             phase: 'Frontend',
             color: 'var(--cyan)',
             items: [
-                { id: 'fs4', title: 'React & Hooks', xp: 500, time: '4 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'React Docs (react.dev)', 'Scrimba React Course', 'Jack Herrington YouTube'] },
-                { id: 'fs5', title: 'State Management (Redux / Zustand)', xp: 350, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Redux Toolkit Docs', 'Zustand GitHub README'] },
-                { id: 'fs6', title: 'TypeScript Basics', xp: 300, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'TypeScript Handbook', 'Matt Pocock YouTube'] },
+                { id: 'fs4', title: 'React & Hooks', xp: 500, time: '4 weeks', resources: ['ClassCentral React (https://www.classcentral.com/subject/react)', 'TeachyTechie (https://www.teachytechie.com/)', 'React Docs (react.dev)', 'Scrimba React'] },
+                { id: 'fs5', title: 'State Management (Redux / Zustand)', xp: 350, time: '2 weeks', resources: ['ClassCentral Redux (https://www.classcentral.com/subject/redux)', 'TeachyTechie (https://www.teachytechie.com/)', 'Redux Toolkit Docs'] },
+                { id: 'fs6', title: 'TypeScript Basics', xp: 300, time: '2 weeks', resources: ['ClassCentral TypeScript (https://www.classcentral.com/subject/typescript)', 'TeachyTechie (https://www.teachytechie.com/)', 'TypeScript Handbook'] },
             ]
         },
         {
             phase: 'Backend',
             color: 'var(--purple)',
             items: [
-                { id: 'fs7', title: 'Node.js & Express', xp: 450, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Node.js Docs', 'Traversy Media Node Crash Course'] },
-                { id: 'fs8', title: 'REST API Design', xp: 300, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'REST API Tutorial', 'Postman Learning Center'] },
-                { id: 'fs9', title: 'Databases (SQL + MongoDB)', xp: 400, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'SQLZoo', 'MongoDB University', 'Prisma ORM Docs'] },
+                { id: 'fs7', title: 'Node.js & Express', xp: 450, time: '3 weeks', resources: ['ClassCentral Node.js (https://www.classcentral.com/subject/nodejs)', 'TeachyTechie (https://www.teachytechie.com/)', 'Node.js Docs'] },
+                { id: 'fs8', title: 'REST API Design', xp: 300, time: '2 weeks', resources: ['ClassCentral API (https://www.classcentral.com/subject/web-api)', 'TeachyTechie (https://www.teachytechie.com/)', 'REST API Tutorial'] },
+                { id: 'fs9', title: 'Databases (SQL + MongoDB)', xp: 400, time: '3 weeks', resources: ['ClassCentral Databases (https://www.classcentral.com/subject/databases)', 'TeachyTechie (https://www.teachytechie.com/)', 'SQLZoo'] },
             ]
         },
         {
             phase: 'Advanced',
             color: '#F59E0B',
             items: [
-                { id: 'fs10', title: 'Authentication & Security', xp: 350, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'JWT.io', 'OWASP Top 10', 'Fireship Auth Video'] },
-                { id: 'fs11', title: 'System Design Basics', xp: 600, time: '4 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Gaurav Sen YouTube', 'Designing Data-Intensive Apps'] },
-                { id: 'fs12', title: 'DSA for Interviews', xp: 700, time: '6 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Striver A-Z Sheet', 'NeetCode.io', 'LeetCode Top 150'] },
+                { id: 'fs10', title: 'Authentication & Security', xp: 350, time: '2 weeks', resources: ['ClassCentral Web Security (https://www.classcentral.com/subject/web-security)', 'TeachyTechie (https://www.teachytechie.com/)', 'JWT.io'] },
+                { id: 'fs11', title: 'System Design Basics', xp: 600, time: '4 weeks', resources: ['ClassCentral System Design (https://www.classcentral.com/subject/system-design)', 'TeachyTechie (https://www.teachytechie.com/)', 'Gaurav Sen YouTube'] },
+                { id: 'fs12', title: 'DSA for Interviews', xp: 700, time: '6 weeks', resources: ['ClassCentral DSA (https://www.classcentral.com/subject/algorithms-and-data-structures)', 'TeachyTechie (https://www.teachytechie.com/)', 'Striver A-Z Sheet'] },
             ]
         },
     ],
@@ -119,36 +152,36 @@ export const roadmapData = {
             phase: 'Math & Python Foundation',
             color: 'var(--green)',
             items: [
-                { id: 'ai1', title: 'Python for Data Science', xp: 300, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Python.org Docs', 'CS50P Harvard', 'Mosh Python Course'] },
-                { id: 'ai2', title: 'Linear Algebra & Statistics', xp: 400, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', '3Blue1Brown Linear Algebra', 'StatQuest YouTube', 'Khan Academy'] },
-                { id: 'ai3', title: 'NumPy & Pandas', xp: 250, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Kaggle Pandas Course', 'NumPy Docs Tutorial'] },
+                { id: 'ai1', title: 'Python for Data Science', xp: 300, time: '3 weeks', resources: ['ClassCentral Python (https://www.classcentral.com/subject/python)', 'TeachyTechie (https://www.teachytechie.com/)', 'Python.org Docs'] },
+                { id: 'ai2', title: 'Linear Algebra & Statistics', xp: 400, time: '3 weeks', resources: ['ClassCentral Statistics (https://www.classcentral.com/subject/statistics)', 'TeachyTechie (https://www.teachytechie.com/)', 'Khan Academy'] },
+                { id: 'ai3', title: 'NumPy & Pandas', xp: 250, time: '2 weeks', resources: ['ClassCentral Pandas (https://www.classcentral.com/subject/data-analysis)', 'TeachyTechie (https://www.teachytechie.com/)', 'Kaggle Pandas'] },
             ]
         },
         {
             phase: 'Machine Learning',
             color: 'var(--purple)',
             items: [
-                { id: 'ai4', title: 'Supervised Learning (Regression, Classification)', xp: 500, time: '4 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Andrew Ng ML Course', 'Scikit-Learn Docs', 'StatQuest ML Playlist'] },
-                { id: 'ai5', title: 'Unsupervised Learning & Clustering', xp: 400, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Google ML Crash Course', 'Kaggle ML Courses'] },
-                { id: 'ai6', title: 'Model Evaluation & Feature Engineering', xp: 350, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Kaggle Feature Engineering Course'] },
+                { id: 'ai4', title: 'Supervised Learning (Regression, Classification)', xp: 500, time: '4 weeks', resources: ['ClassCentral Machine Learning (https://www.classcentral.com/subject/machine-learning)', 'TeachyTechie (https://www.teachytechie.com/)', 'Andrew Ng ML'] },
+                { id: 'ai5', title: 'Unsupervised Learning & Clustering', xp: 400, time: '3 weeks', resources: ['ClassCentral Unsupervised ML (https://www.classcentral.com/subject/machine-learning)', 'TeachyTechie (https://www.teachytechie.com/)', 'Google ML Crash Course'] },
+                { id: 'ai6', title: 'Model Evaluation & Feature Engineering', xp: 350, time: '2 weeks', resources: ['ClassCentral Feature Engineering (https://www.classcentral.com/subject/machine-learning)', 'TeachyTechie (https://www.teachytechie.com/)'] },
             ]
         },
         {
             phase: 'Deep Learning',
             color: 'var(--cyan)',
             items: [
-                { id: 'ai7', title: 'Neural Networks & Deep Learning', xp: 600, time: '5 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Deep Learning Specialization (Coursera)', 'fast.ai', '3Blue1Brown Neural Nets'] },
-                { id: 'ai8', title: 'NLP & Transformers', xp: 550, time: '4 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'HuggingFace Course', 'Jay Alammar Blog', 'Andrej Karpathy YouTube'] },
-                { id: 'ai9', title: 'Computer Vision (CNN)', xp: 500, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'CS231n Stanford', 'PyTorch Vision Docs'] },
+                { id: 'ai7', title: 'Neural Networks & Deep Learning', xp: 600, time: '5 weeks', resources: ['ClassCentral Deep Learning (https://www.classcentral.com/subject/deep-learning)', 'TeachyTechie (https://www.teachytechie.com/)', 'fast.ai'] },
+                { id: 'ai8', title: 'NLP & Transformers', xp: 550, time: '4 weeks', resources: ['ClassCentral NLP (https://www.classcentral.com/subject/nlp)', 'TeachyTechie (https://www.teachytechie.com/)', 'HuggingFace Course'] },
+                { id: 'ai9', title: 'Computer Vision (CNN)', xp: 500, time: '3 weeks', resources: ['ClassCentral Computer Vision (https://www.classcentral.com/subject/computer-vision)', 'TeachyTechie (https://www.teachytechie.com/)', 'CS231n Stanford'] },
             ]
         },
         {
             phase: 'MLOps & Applications',
             color: '#F59E0B',
             items: [
-                { id: 'ai10', title: 'LangChain & LLM Apps', xp: 600, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'LangChain Docs', 'LlamaIndex', 'Deeplearning.ai Short Courses'] },
-                { id: 'ai11', title: 'MLOps & Model Deployment', xp: 500, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'MLflow Docs', 'Weights & Biases', 'FastAPI for ML'] },
-                { id: 'ai12', title: 'Kaggle Competitions', xp: 700, time: 'Ongoing', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Kaggle.com', 'Kaggle Notebooks'] },
+                { id: 'ai10', title: 'LangChain & LLM Apps', xp: 600, time: '3 weeks', resources: ['ClassCentral AI (https://www.classcentral.com/subject/artificial-intelligence)', 'TeachyTechie (https://www.teachytechie.com/)', 'LangChain Docs'] },
+                { id: 'ai11', title: 'MLOps & Model Deployment', xp: 500, time: '3 weeks', resources: ['ClassCentral MLOps (https://www.classcentral.com/subject/mlops)', 'TeachyTechie (https://www.teachytechie.com/)', 'MLflow Docs'] },
+                { id: 'ai12', title: 'Kaggle Competitions', xp: 700, time: 'Ongoing', resources: ['ClassCentral Kaggle Guides (https://www.classcentral.com/subject/data-science)', 'TeachyTechie (https://www.teachytechie.com/)', 'Kaggle.com'] },
             ]
         },
     ],
@@ -158,36 +191,36 @@ export const roadmapData = {
             phase: 'Data Foundation',
             color: 'var(--green)',
             items: [
-                { id: 'ds1', title: 'Python & Pandas', xp: 300, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Kaggle Pandas Course', 'Real Python', 'Python Docs'] },
-                { id: 'ds2', title: 'SQL Mastery', xp: 350, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Mode SQL Tutorial', 'SQLZoo', 'LeetCode SQL'] },
-                { id: 'ds3', title: 'Statistics & Probability', xp: 400, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'StatQuest YouTube', 'Khan Academy Stats', 'Think Stats (Book)'] },
+                { id: 'ds1', title: 'Python & Pandas', xp: 300, time: '3 weeks', resources: ['ClassCentral Data Analysis (https://www.classcentral.com/subject/data-analysis)', 'TeachyTechie (https://www.teachytechie.com/)', 'Kaggle Pandas'] },
+                { id: 'ds2', title: 'SQL Mastery', xp: 350, time: '3 weeks', resources: ['ClassCentral SQL (https://www.classcentral.com/subject/sql)', 'TeachyTechie (https://www.teachytechie.com/)', 'Mode SQL Tutorial'] },
+                { id: 'ds3', title: 'Statistics & Probability', xp: 400, time: '3 weeks', resources: ['ClassCentral Statistics (https://www.classcentral.com/subject/statistics)', 'TeachyTechie (https://www.teachytechie.com/)', 'Khan Academy Stats'] },
             ]
         },
         {
             phase: 'Data Analysis',
             color: '#F59E0B',
             items: [
-                { id: 'ds4', title: 'Data Visualization (Matplotlib, Seaborn, Plotly)', xp: 300, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Matplotlib Docs', 'Plotly Python', 'Data Viz Course Kaggle'] },
-                { id: 'ds5', title: 'Exploratory Data Analysis (EDA)', xp: 400, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Kaggle EDA Notebooks', 'Pandas Profiling'] },
-                { id: 'ds6', title: 'Excel & Google Sheets for Data', xp: 200, time: '1 week', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Excel for Data Analysis (YouTube)'] },
+                { id: 'ds4', title: 'Data Visualization (Matplotlib, Seaborn, Plotly)', xp: 300, time: '2 weeks', resources: ['ClassCentral Data Viz (https://www.classcentral.com/subject/data-visualization)', 'TeachyTechie (https://www.teachytechie.com/)', 'Matplotlib Docs'] },
+                { id: 'ds5', title: 'Exploratory Data Analysis (EDA)', xp: 400, time: '3 weeks', resources: ['ClassCentral Data Science (https://www.classcentral.com/subject/data-science)', 'TeachyTechie (https://www.teachytechie.com/)', 'Kaggle EDA'] },
+                { id: 'ds6', title: 'Excel & Google Sheets for Data', xp: 200, time: '1 week', resources: ['ClassCentral Excel (https://www.classcentral.com/subject/excel)', 'TeachyTechie (https://www.teachytechie.com/)', 'Excel Tricks'] },
             ]
         },
         {
             phase: 'Machine Learning',
             color: 'var(--purple)',
             items: [
-                { id: 'ds7', title: 'Scikit-Learn ML Pipeline', xp: 500, time: '4 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Scikit-Learn Docs', 'Kaggle ML Courses', 'Andrew Ng Coursera'] },
-                { id: 'ds8', title: 'Feature Engineering', xp: 350, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Kaggle Feature Engineering'] },
-                { id: 'ds9', title: 'Time Series Analysis', xp: 400, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Prophet Docs', 'Time Series Kaggle Course'] },
+                { id: 'ds7', title: 'Scikit-Learn ML Pipeline', xp: 500, time: '4 weeks', resources: ['ClassCentral Machine Learning (https://www.classcentral.com/subject/machine-learning)', 'TeachyTechie (https://www.teachytechie.com/)', 'Scikit-Learn Docs'] },
+                { id: 'ds8', title: 'Feature Engineering', xp: 350, time: '2 weeks', resources: ['ClassCentral Feature Eng (https://www.classcentral.com/subject/data-science)', 'TeachyTechie (https://www.teachytechie.com/)'] },
+                { id: 'ds9', title: 'Time Series Analysis', xp: 400, time: '2 weeks', resources: ['ClassCentral Time Series (https://www.classcentral.com/subject/machine-learning)', 'TeachyTechie (https://www.teachytechie.com/)', 'Prophet Docs'] },
             ]
         },
         {
             phase: 'Big Data & Tools',
             color: 'var(--cyan)',
             items: [
-                { id: 'ds10', title: 'Power BI / Tableau', xp: 350, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Power BI Microsoft Learn', 'Tableau Free Training'] },
-                { id: 'ds11', title: 'Apache Spark Basics', xp: 500, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Spark Docs', 'Databricks Community'] },
-                { id: 'ds12', title: 'Data Engineering Fundamentals', xp: 600, time: '4 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Data Engineering Zoomcamp', 'dbt Docs'] },
+                { id: 'ds10', title: 'Power BI / Tableau', xp: 350, time: '2 weeks', resources: ['ClassCentral Tableau (https://www.classcentral.com/subject/tableau)', 'TeachyTechie (https://www.teachytechie.com/)', 'Power BI Guides'] },
+                { id: 'ds11', title: 'Apache Spark Basics', xp: 500, time: '3 weeks', resources: ['ClassCentral Big Data (https://www.classcentral.com/subject/big-data)', 'TeachyTechie (https://www.teachytechie.com/)', 'Spark Docs'] },
+                { id: 'ds12', title: 'Data Engineering Fundamentals', xp: 600, time: '4 weeks', resources: ['ClassCentral Data Engineering (https://www.classcentral.com/subject/data-engineering)', 'TeachyTechie (https://www.teachytechie.com/)', 'dbt Docs'] },
             ]
         },
     ],
@@ -197,36 +230,36 @@ export const roadmapData = {
             phase: 'Linux & Networking',
             color: 'var(--green)',
             items: [
-                { id: 'do1', title: 'Linux Command Line', xp: 300, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Linux Journey', 'OverTheWire (Bandit)', 'Ryan\'s Tutorials'] },
-                { id: 'do2', title: 'Networking Fundamentals', xp: 350, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Professor Messer', 'NetworkChuck YouTube', 'Cisco CCNA free'] },
-                { id: 'do3', title: 'Shell Scripting (Bash)', xp: 250, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Bash Manual', 'ShellScripting.sh'] },
+                { id: 'do1', title: 'Linux Command Line', xp: 300, time: '2 weeks', resources: ['ClassCentral Linux (https://www.classcentral.com/subject/linux)', 'TeachyTechie (https://www.teachytechie.com/)', 'Linux Journey'] },
+                { id: 'do2', title: 'Networking Fundamentals', xp: 350, time: '2 weeks', resources: ['ClassCentral Networking (https://www.classcentral.com/subject/computer-networking)', 'TeachyTechie (https://www.teachytechie.com/)', 'Professor Messer'] },
+                { id: 'do3', title: 'Shell Scripting (Bash)', xp: 250, time: '2 weeks', resources: ['ClassCentral Bash (https://www.classcentral.com/subject/linux)', 'TeachyTechie (https://www.teachytechie.com/)', 'Bash Manual'] },
             ]
         },
         {
             phase: 'Containers & CI/CD',
             color: 'var(--cyan)',
             items: [
-                { id: 'do4', title: 'Docker & Docker Compose', xp: 400, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Docker Docs', 'TechWorld with Nana', 'Play with Docker'] },
-                { id: 'do5', title: 'Kubernetes', xp: 600, time: '5 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Kubernetes Docs', 'TechWorld with Nana K8s', 'KodeKloud'] },
-                { id: 'do6', title: 'CI/CD with GitHub Actions / Jenkins', xp: 400, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'GitHub Actions Docs', 'Jenkins Docs', 'KodeKloud'] },
+                { id: 'do4', title: 'Docker & Docker Compose', xp: 400, time: '3 weeks', resources: ['ClassCentral Docker (https://www.classcentral.com/subject/docker)', 'TeachyTechie (https://www.teachytechie.com/)', 'Docker Docs'] },
+                { id: 'do5', title: 'Kubernetes', xp: 600, time: '5 weeks', resources: ['ClassCentral Kubernetes (https://www.classcentral.com/subject/kubernetes)', 'TeachyTechie (https://www.teachytechie.com/)', 'Kubernetes Docs'] },
+                { id: 'do6', title: 'CI/CD with GitHub Actions / Jenkins', xp: 400, time: '3 weeks', resources: ['ClassCentral DevOps (https://www.classcentral.com/subject/devops)', 'TeachyTechie (https://www.teachytechie.com/)', 'GitHub Actions Docs'] },
             ]
         },
         {
             phase: 'Cloud Platforms',
             color: '#F59E0B',
             items: [
-                { id: 'do7', title: 'AWS Fundamentals (EC2, S3, Lambda)', xp: 500, time: '4 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'AWS Skill Builder', 'A Cloud Guru', 'AWS Free Tier'] },
-                { id: 'do8', title: 'Infrastructure as Code (Terraform)', xp: 500, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Terraform Docs', 'HashiCorp Learn'] },
-                { id: 'do9', title: 'Monitoring (Prometheus, Grafana)', xp: 400, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Prometheus Docs', 'Grafana Labs'] },
+                { id: 'do7', title: 'AWS Fundamentals (EC2, S3, Lambda)', xp: 500, time: '4 weeks', resources: ['ClassCentral AWS (https://www.classcentral.com/subject/aws)', 'TeachyTechie (https://www.teachytechie.com/)', 'AWS Skill Builder'] },
+                { id: 'do8', title: 'Infrastructure as Code (Terraform)', xp: 500, time: '3 weeks', resources: ['ClassCentral Cloud Computing (https://www.classcentral.com/subject/cloud-computing)', 'TeachyTechie (https://www.teachytechie.com/)', 'Terraform Docs'] },
+                { id: 'do9', title: 'Monitoring (Prometheus, Grafana)', xp: 400, time: '2 weeks', resources: ['ClassCentral DevOps Monitoring (https://www.classcentral.com/subject/devops)', 'TeachyTechie (https://www.teachytechie.com/)', 'Prometheus Docs'] },
             ]
         },
         {
             phase: 'Advanced DevOps',
             color: 'var(--purple)',
             items: [
-                { id: 'do10', title: 'GitOps & ArgoCD', xp: 500, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'ArgoCD Docs', 'GitOps Book'] },
-                { id: 'do11', title: 'Security in DevOps (DevSecOps)', xp: 450, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'OWASP DevSecOps', 'Snyk'] },
-                { id: 'do12', title: 'AWS/Azure Certification Prep', xp: 700, time: '4 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Stephane Maarek Udemy', 'ExamTopics', 'Tutorials Dojo'] },
+                { id: 'do10', title: 'GitOps & ArgoCD', xp: 500, time: '3 weeks', resources: ['ClassCentral Containerization (https://www.classcentral.com/subject/devops)', 'TeachyTechie (https://www.teachytechie.com/)', 'ArgoCD Docs'] },
+                { id: 'do11', title: 'Security in DevOps (DevSecOps)', xp: 450, time: '2 weeks', resources: ['ClassCentral DevSecOps (https://www.classcentral.com/subject/cybersecurity)', 'TeachyTechie (https://www.teachytechie.com/)', 'OWASP'] },
+                { id: 'do12', title: 'AWS/Azure Certification Prep', xp: 700, time: '4 weeks', resources: ['ClassCentral Azure/AWS Certs (https://www.classcentral.com/subject/cloud-computing)', 'TeachyTechie (https://www.teachytechie.com/)', 'ExamTopics'] },
             ]
         },
     ],
@@ -236,36 +269,36 @@ export const roadmapData = {
             phase: 'Foundations',
             color: 'var(--green)',
             items: [
-                { id: 'cy1', title: 'Networking & Protocols (TCP/IP, HTTP, DNS)', xp: 400, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Professor Messer', 'NetworkChuck', 'Cisco NetAcad'] },
-                { id: 'cy2', title: 'Linux for Security', xp: 350, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'OverTheWire Bandit', 'TryHackMe Pre-Security'] },
-                { id: 'cy3', title: 'Cryptography Basics', xp: 300, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'CryptoHack', 'Coursera Crypto I (Dan Boneh)'] },
+                { id: 'cy1', title: 'Networking & Protocols (TCP/IP, HTTP, DNS)', xp: 400, time: '3 weeks', resources: ['ClassCentral Networking (https://www.classcentral.com/subject/computer-networking)', 'TeachyTechie (https://www.teachytechie.com/)', 'Professor Messer'] },
+                { id: 'cy2', title: 'Linux for Security', xp: 350, time: '2 weeks', resources: ['ClassCentral Linux (https://www.classcentral.com/subject/linux)', 'TeachyTechie (https://www.teachytechie.com/)', 'OverTheWire Bandit'] },
+                { id: 'cy3', title: 'Cryptography Basics', xp: 300, time: '2 weeks', resources: ['ClassCentral Cryptography (https://www.classcentral.com/subject/cryptography)', 'TeachyTechie (https://www.teachytechie.com/)', 'CryptoHack'] },
             ]
         },
         {
             phase: 'Ethical Hacking',
             color: '#F72585',
             items: [
-                { id: 'cy4', title: 'Web Application Security (OWASP Top 10)', xp: 500, time: '4 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'PortSwigger Web Security Academy', 'OWASP Juice Shop'] },
-                { id: 'cy5', title: 'Network Penetration Testing', xp: 550, time: '4 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'TryHackMe', 'HackTheBox', 'eJPT Cert'] },
-                { id: 'cy6', title: 'Vulnerability Assessment & Scanning', xp: 400, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Nmap Docs', 'Metasploit Unleashed'] },
+                { id: 'cy4', title: 'Web Application Security (OWASP Top 10)', xp: 500, time: '4 weeks', resources: ['ClassCentral Web Security (https://www.classcentral.com/subject/web-security)', 'TeachyTechie (https://www.teachytechie.com/)', 'PortSwigger'] },
+                { id: 'cy5', title: 'Network Penetration Testing', xp: 550, time: '4 weeks', resources: ['ClassCentral PenTesting (https://www.classcentral.com/subject/cybersecurity)', 'TeachyTechie (https://www.teachytechie.com/)', 'TryHackMe'] },
+                { id: 'cy6', title: 'Vulnerability Assessment & Scanning', xp: 400, time: '2 weeks', resources: ['ClassCentral Cyber Defense (https://www.classcentral.com/subject/cybersecurity)', 'TeachyTechie (https://www.teachytechie.com/)', 'Nmap Docs'] },
             ]
         },
         {
             phase: 'Specialization',
             color: 'var(--cyan)',
             items: [
-                { id: 'cy7', title: 'Malware Analysis & Reverse Engineering', xp: 600, time: '5 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Malware Unicorn', 'Any.run Sandbox', 'x64dbg'] },
-                { id: 'cy8', title: 'Cloud Security', xp: 500, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'AWS Security Specialty', 'Cloud Security Alliance'] },
-                { id: 'cy9', title: 'Incident Response & Forensics', xp: 500, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'BlueTeamLabs', 'SANS Reading Room'] },
+                { id: 'cy7', title: 'Malware Analysis & Reverse Engineering', xp: 600, time: '5 weeks', resources: ['ClassCentral Forensics (https://www.classcentral.com/subject/cybersecurity)', 'TeachyTechie (https://www.teachytechie.com/)', 'Reverse Engineering Guides'] },
+                { id: 'cy8', title: 'Cloud Security', xp: 500, time: '3 weeks', resources: ['ClassCentral Cloud Security (https://www.classcentral.com/subject/cloud-computing)', 'TeachyTechie (https://www.teachytechie.com/)', 'AWS Security'] },
+                { id: 'cy9', title: 'Incident Response & Forensics', xp: 500, time: '3 weeks', resources: ['ClassCentral Incident Response (https://www.classcentral.com/subject/cybersecurity)', 'TeachyTechie (https://www.teachytechie.com/)', 'BlueTeamLabs'] },
             ]
         },
         {
             phase: 'Certifications',
             color: 'var(--purple)',
             items: [
-                { id: 'cy10', title: 'CompTIA Security+', xp: 600, time: '4 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Professor Messer S+', 'ExamCompass Practice'] },
-                { id: 'cy11', title: 'CEH or eJPT Certification', xp: 700, time: '6 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'EC-Council CEH', 'INE eJPT'] },
-                { id: 'cy12', title: 'Bug Bounty on HackerOne/Bugcrowd', xp: 800, time: 'Ongoing', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'HackerOne', 'Bugcrowd', 'NahamCon Talks'] },
+                { id: 'cy10', title: 'CompTIA Security+', xp: 600, time: '4 weeks', resources: ['ClassCentral Security+ (https://www.classcentral.com/subject/cybersecurity)', 'TeachyTechie (https://www.teachytechie.com/)', 'Professor Messer S+'] },
+                { id: 'cy11', title: 'CEH or eJPT Certification', xp: 700, time: '6 weeks', resources: ['ClassCentral CEH Certs (https://www.classcentral.com/subject/cybersecurity)', 'TeachyTechie (https://www.teachytechie.com/)', 'EC-Council CEH'] },
+                { id: 'cy12', title: 'Bug Bounty on HackerOne/Bugcrowd', xp: 800, time: 'Ongoing', resources: ['ClassCentral Bug Bounty Guides (https://www.classcentral.com/subject/cybersecurity)', 'TeachyTechie (https://www.teachytechie.com/)', 'HackerOne'] },
             ]
         },
     ],
@@ -275,36 +308,36 @@ export const roadmapData = {
             phase: 'Programming Foundation',
             color: 'var(--green)',
             items: [
-                { id: 'mb1', title: 'JavaScript / TypeScript Basics', xp: 300, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'javascript.info', 'TypeScript Handbook'] },
-                { id: 'mb2', title: 'UI & UX Design Principles', xp: 200, time: '1 week', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Google Material Design', 'Apple HIG', 'Refactoring UI (Book)'] },
-                { id: 'mb3', title: 'Git & Project Setup', xp: 150, time: '1 week', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Git Documentation', 'Expo Docs'] },
+                { id: 'mb1', title: 'JavaScript / TypeScript Basics', xp: 300, time: '3 weeks', resources: ['ClassCentral JS/TS (https://www.classcentral.com/subject/javascript)', 'TeachyTechie (https://www.teachytechie.com/)', 'javascript.info'] },
+                { id: 'mb2', title: 'UI & UX Design Principles', xp: 200, time: '1 week', resources: ['ClassCentral UX Design (https://www.classcentral.com/subject/ux-design)', 'TeachyTechie (https://www.teachytechie.com/)', 'Google Material Design'] },
+                { id: 'mb3', title: 'Git & Project Setup', xp: 150, time: '1 week', resources: ['ClassCentral Git (https://www.classcentral.com/subject/git)', 'TeachyTechie (https://www.teachytechie.com/)', 'Expo Docs'] },
             ]
         },
         {
             phase: 'React Native / Flutter',
             color: '#8B5CF6',
             items: [
-                { id: 'mb4', title: 'React Native Core Concepts', xp: 500, time: '4 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'React Native Docs', 'William Candillon (YouTube)', 'Expo Docs'] },
-                { id: 'mb5', title: 'Navigation & State Management', xp: 400, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'React Navigation Docs', 'Zustand for Mobile'] },
-                { id: 'mb6', title: 'Native APIs (Camera, GPS, Push Notifs)', xp: 350, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Expo SDK Docs', 'React Native Community'] },
+                { id: 'mb4', title: 'React Native Core Concepts', xp: 500, time: '4 weeks', resources: ['ClassCentral React Native (https://www.classcentral.com/subject/mobile-development)', 'TeachyTechie (https://www.teachytechie.com/)', 'React Native Docs'] },
+                { id: 'mb5', title: 'Navigation & State Management', xp: 400, time: '3 weeks', resources: ['ClassCentral App Dev (https://www.classcentral.com/subject/mobile-development)', 'TeachyTechie (https://www.teachytechie.com/)', 'React Navigation Docs'] },
+                { id: 'mb6', title: 'Native APIs (Camera, GPS, Push Notifs)', xp: 350, time: '2 weeks', resources: ['ClassCentral Android Dev (https://www.classcentral.com/subject/android-development)', 'TeachyTechie (https://www.teachytechie.com/)', 'Expo SDK Docs'] },
             ]
         },
         {
             phase: 'Backend Integration',
             color: 'var(--cyan)',
             items: [
-                { id: 'mb7', title: 'Firebase / Supabase for Mobile', xp: 400, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Firebase Docs', 'Supabase Docs', 'Fireship YouTube'] },
-                { id: 'mb8', title: 'REST & GraphQL API Calls', xp: 300, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Axios Docs', 'Apollo Client Docs'] },
-                { id: 'mb9', title: 'Offline Storage & Caching', xp: 350, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'MMKV', 'WatermelonDB', 'AsyncStorage Docs'] },
+                { id: 'mb7', title: 'Firebase / Supabase for Mobile', xp: 400, time: '3 weeks', resources: ['ClassCentral Mobile Backends (https://www.classcentral.com/subject/mobile-development)', 'TeachyTechie (https://www.teachytechie.com/)', 'Firebase Docs'] },
+                { id: 'mb8', title: 'REST & GraphQL API Calls', xp: 300, time: '2 weeks', resources: ['ClassCentral APIs (https://www.classcentral.com/subject/web-api)', 'TeachyTechie (https://www.teachytechie.com/)', 'Axios Docs'] },
+                { id: 'mb9', title: 'Offline Storage & Caching', xp: 350, time: '2 weeks', resources: ['ClassCentral Database Connects (https://www.classcentral.com/subject/databases)', 'TeachyTechie (https://www.teachytechie.com/)', 'MMKV'] },
             ]
         },
         {
             phase: 'Publishing & Advanced',
             color: '#F59E0B',
             items: [
-                { id: 'mb10', title: 'App Store & Play Store Deployment', xp: 400, time: '2 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Apple App Store Connect', 'Google Play Console', 'Expo EAS Build'] },
-                { id: 'mb11', title: 'Performance Optimization', xp: 500, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'Flipper Debugger', 'React Native Performance Docs'] },
-                { id: 'mb12', title: 'Animation (Reanimated 3)', xp: 550, time: '3 weeks', resources: ['TeachyTechie (https://www.teachytechie.com/)', 'React Native Reanimated Docs', 'William Candillon Courses'] },
+                { id: 'mb10', title: 'App Store & Play Store Deployment', xp: 400, time: '2 weeks', resources: ['ClassCentral iOS Dev (https://www.classcentral.com/subject/ios-development)', 'TeachyTechie (https://www.teachytechie.com/)', 'Apple App Store Connect'] },
+                { id: 'mb11', title: 'Performance Optimization', xp: 500, time: '3 weeks', resources: ['ClassCentral Performance (https://www.classcentral.com/subject/software-engineering)', 'TeachyTechie (https://www.teachytechie.com/)', 'Flipper Debugger'] },
+                { id: 'mb12', title: 'Animation (Reanimated 3)', xp: 550, time: '3 weeks', resources: ['ClassCentral UI Animation (https://www.classcentral.com/subject/mobile-development)', 'TeachyTechie (https://www.teachytechie.com/)', 'Reanimated Docs'] },
             ]
         },
     ],

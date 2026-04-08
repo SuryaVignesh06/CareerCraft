@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Map, Bot, FileText, Home, ChevronRight, Flame, Zap, Target, CheckCircle, Trophy, LogOut, Lock, BookOpen, Sparkles, Star, Briefcase, ExternalLink, Award, PenSquare, ChevronDown, ChevronUp } from 'lucide-react';
+import confetti from 'canvas-confetti';
+import { Map, Bot, FileText, Home, ChevronRight, Flame, Zap, Target, CheckCircle, Trophy, LogOut, Lock, BookOpen, Sparkles, Star, Briefcase, ExternalLink, Award, PenSquare, ChevronDown, ChevronUp, Code } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import { roadmapData, careerMeta, careerCompletionData, getNextNode, getProgress } from '../data/roadmaps';
+import { roadmapData, careerMeta, careerCompletionData, getNextNode, getProgress, careerCertificationsData } from '../data/roadmaps';
 
 const navItems = [
     { icon: Home, label: 'Home', path: '/dashboard' },
     { icon: Map, label: 'Roadmap', path: '/roadmap' },
     { icon: Bot, label: 'AI Mentor', path: '/mentor' },
+    { icon: Award, label: 'Certifications', path: '/certifications' },
+    { icon: Briefcase, label: 'Internships', path: '/internships' },
+    { icon: Code, label: 'Visualizer', path: '/visualizer' },
     { icon: FileText, label: 'Analyzer', path: '/analyzer' },
     { icon: FileText, label: 'Resume', path: '/resume' },
 ];
@@ -51,6 +55,7 @@ export default function DashboardPage() {
     const nextNode   = getNextNode(career, completedIds);
     const isComplete = progress === 100;
     const completion = careerCompletionData[career] || careerCompletionData.fullstack;
+    const userCerts  = careerCertificationsData[career] || careerCertificationsData.fullstack;
     const [expandedRole, setExpandedRole] = useState(null);
 
     // Get first 4 nodes of this career's roadmap with computed statuses
@@ -66,17 +71,47 @@ export default function DashboardPage() {
 
     const handleLogout = () => { logout(); navigate('/login'); };
 
-    // Mark a node complete (for demo interactivity)
-    const markComplete = (nodeId) => {
+    // Mark a node complete with gamification
+    const markComplete = (nodeId, event) => {
         if (completedIds.includes(nodeId)) return;
         const node = allNodes.find(n => n.id === nodeId);
         const gainedXp = node?.xp || 100;
+        
+        // Streak calculations
+        const now = new Date();
+        const lastActionDate = activity.length > 0 ? new Date(activity[0].timestamp) : null;
+        let newStreak = streak;
+        
+        if (!lastActionDate) {
+            newStreak = 1;
+        } else {
+            const isToday = lastActionDate.toDateString() === now.toDateString();
+            // A quick check if it's "yesterday" (just rough logic for demo)
+            const isYesterday = (now - lastActionDate) < (48 * 60 * 60 * 1000) && !isToday;
+            if (isYesterday) newStreak += 1;
+            else if (!isToday) newStreak = 1; 
+        }
+
+        const newXp = xp + gainedXp;
+        const oldLevel = xpToLevel(xp);
+        const newLevel = xpToLevel(newXp);
+        
+        // Gamified celebrations!
+        if (newLevel > oldLevel) {
+            confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } }); // Level Up Big Confetti
+        } else if (event) {
+            const rect = event.target.getBoundingClientRect();
+            const x = (rect.left + rect.right) / 2 / window.innerWidth;
+            const y = (rect.top + rect.bottom) / 2 / window.innerHeight;
+            confetti({ particleCount: 40, spread: 50, origin: { x, y } }); // Nice little burst
+        }
+
         updateProfile({
             completedNodes: [...completedIds, nodeId],
-            xp: xp + gainedXp,
-            streak: streak,
+            xp: newXp,
+            streak: newStreak,
             activityLog: [
-                { action: `Completed "${node?.title}"`, xp: `+${gainedXp} XP`, timestamp: new Date().toISOString() },
+                { action: `Completed "${node?.title}"`, xp: `+${gainedXp} XP`, timestamp: now.toISOString() },
                 ...activity.slice(0, 9),
             ],
         });
@@ -221,7 +256,7 @@ export default function DashboardPage() {
                                         <div className="text-xs text-[var(--muted)] mt-0.5">{node.time} · +{node.xp} XP</div>
                                     </div>
                                     {node.status === 'active' && (
-                                        <button onClick={() => markComplete(node.id)}
+                                        <button onClick={(e) => markComplete(node.id, e)}
                                             className="text-xs px-3 py-1.5 rounded-lg bg-[var(--cyan)]/20 text-[var(--cyan)] border border-[var(--cyan)]/30 hover:bg-[var(--cyan)]/30 transition-all opacity-0 group-hover:opacity-100">
                                             Mark Done
                                         </button>
@@ -304,6 +339,75 @@ export default function DashboardPage() {
                                 <h3 className="font-bold text-lg text-white group-hover:text-[var(--cyan)] transition-colors">{f.title}</h3>
                                 <p className="text-sm text-[var(--muted)]">{f.desc}</p>
                             </Link>
+                        ))}
+                    </div>
+                </motion.div>
+
+                {/* Genuine Internships Section */}
+                <motion.div className="mt-12" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
+                    <div className="flex items-center gap-3 mb-6">
+                        <div className="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center">
+                            <Briefcase size={20} className="text-orange-400" />
+                        </div>
+                        <div>
+                            <h2 className="text-2xl font-bold text-white">Genuine Internships & Opportunities</h2>
+                            <p className="text-sm text-[var(--muted)]">Curated, real platforms for standard students to land verified tech internships.</p>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {[
+                            { title: 'Simplify.jobs', desc: '1-click apply for standard tech internships', url: 'https://simplify.jobs/internships', icon: '🚀', color: 'from-blue-500/20 to-cyan-500/5' },
+                            { title: 'Y Combinator', desc: 'Internships at fast-growing startups', url: 'https://www.ycombinator.com/jobs/internships', icon: '🔥', color: 'from-orange-500/20 to-red-500/5' },
+                            { title: 'Wellfound (AngelList)', desc: 'Tech & startup internships globally', url: 'https://wellfound.com/role/internship', icon: '✌️', color: 'from-purple-500/20 to-pink-500/5' },
+                            { title: 'Internshala', desc: 'Best for Indian stipends and remote roles', url: 'https://internshala.com/internships/', icon: '🇮🇳', color: 'from-green-500/20 to-emerald-500/5' },
+                            { title: 'LinkedIn Internships', desc: 'Corporate and large-scale tech roles', url: 'https://www.linkedin.com/jobs/internship-jobs', icon: '💼', color: 'from-[#0A66C2]/20 to-blue-600/5' },
+                            { title: 'WayUp', desc: 'Early-career & student internships', url: 'https://www.wayup.com/s/internships/', icon: '🎓', color: 'from-indigo-500/20 to-blue-500/5' }
+                        ].map((intern, i) => (
+                            <a href={intern.url} target="_blank" rel="noopener noreferrer" key={i} 
+                               className={`glass-card p-6 flex flex-col gap-3 group relative overflow-hidden transition-all hover:-translate-y-2 border-[var(--border)] hover:border-[var(--cyan)]/40 bg-gradient-to-br ${intern.color}`}>
+                                <div className="flex items-center justify-between mb-1">
+                                    <span className="text-3xl group-hover:scale-110 transition-transform">{intern.icon}</span>
+                                    <ExternalLink size={16} className="text-[var(--muted)] group-hover:text-[var(--cyan)] transition-colors opacity-0 group-hover:opacity-100" />
+                                </div>
+                                <h3 className="font-bold text-lg text-white transition-colors">{intern.title}</h3>
+                                <p className="text-sm text-[var(--muted)]">{intern.desc}</p>
+                            </a>
+                        ))}
+                    </div>
+                </motion.div>
+
+                {/* AI Curated Certifications Section */}
+                <motion.div className="mt-12" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.65 }}>
+                    <div className="flex items-center gap-3 mb-6">
+                        <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center">
+                            <Award size={20} className="text-purple-400" />
+                        </div>
+                        <div>
+                            <h2 className="text-2xl font-bold text-white">AI Curated Top Certifications</h2>
+                            <p className="text-sm text-[var(--muted)]">The highest-value, industry-recognized certificates specifically for your <span className="text-[var(--cyan)] font-medium">{meta.label}</span> career.</p>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {userCerts.map((cert, i) => (
+                            <a href={cert.url} target="_blank" rel="noopener noreferrer" key={i} 
+                               className="glass-card p-6 flex flex-col gap-3 group relative overflow-hidden transition-all hover:-translate-y-2 border-[var(--border)] hover:border-[var(--purple)]/40 bg-gradient-to-br from-[var(--purple)]/5 to-transparent">
+                                <div className="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-100 transition-opacity">
+                                    <ExternalLink size={16} className="text-[var(--purple)]" />
+                                </div>
+                                <div className="flex items-center gap-4 mb-2">
+                                    <div className="w-12 h-12 rounded-full bg-[var(--surface2)] flex items-center justify-center text-2xl shadow-inner shadow-black/50">
+                                        {cert.icon}
+                                    </div>
+                                    <div>
+                                        <p className="text-xs text-[var(--muted)] font-medium uppercase tracking-wider">{cert.provider}</p>
+                                        <h3 className="font-bold text-white leading-tight group-hover:text-[var(--purple)] transition-colors">{cert.title}</h3>
+                                    </div>
+                                </div>
+                                <div className="mt-auto pt-3 border-t border-[var(--border)] flex justify-between items-center text-xs">
+                                    <span className="text-[var(--muted)]">Industry Recognized</span>
+                                    <span className="text-[var(--purple)] font-medium">View Course &rarr;</span>
+                                </div>
+                            </a>
                         ))}
                     </div>
                 </motion.div>

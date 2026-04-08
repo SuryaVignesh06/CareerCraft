@@ -7,6 +7,7 @@ import RoadmapPage from './pages/RoadmapPage';
 import MentorPage from './pages/MentorPage';
 import AnalyzerPage from './pages/AnalyzerPage';
 import ResumePage from './pages/ResumePage';
+import CodeVisualizerPage from './pages/CodeVisualizerPage';
 import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/roadmap" element={<RoadmapPage />} />
           <Route path="/mentor" element={<MentorPage />} />
+          <Route path="/visualizer" element={<CodeVisualizerPage />} />
+          <Route path="/certifications" element={<DashboardPage />} />
+          <Route path="/internships" element={<DashboardPage />} />
           <Route path="/analyzer" element={<AnalyzerPage />} />
           <Route path="/resume" element={<ResumePage />} />
         </Routes>
