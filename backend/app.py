@@ -23,12 +23,8 @@ def create_app() -> Flask:
     """Create and configure the Flask application."""
     app = Flask(__name__)
 
-    # CORS — allow the Vite dev server and common local origins
-    CORS(app, origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:3000",
-    ])
+    # CORS — allow all origins so Vercel and Firebase deployments aren't blocked
+    CORS(app, resources={r"/*": {"origins": "*"}})
 
     # ── Register Blueprints ────────────────────────────────────────────
     from routes.chat import chat_bp
@@ -65,8 +61,9 @@ def create_app() -> Flask:
     logger.info("CareerCraft backend initialized — all blueprints registered")
     return app
 
+# Expose app globally for gunicorn (e.g. gunicorn app:app)
+app = create_app()
 
 if __name__ == "__main__":
     port = int(os.getenv("FLASK_PORT", 5000))
-    app = create_app()
-    app.run(debug=os.getenv("FLASK_ENV") == "development", port=port)
+    app.run(debug=os.getenv("FLASK_ENV") == "development", port=port, host="0.0.0.0")
