@@ -300,8 +300,8 @@ export default function OnboardingPage() {
                                 disabled={!canContinue}
                                 className="btn-neo bg-cc-red text-white py-3 px-6 shadow-[4px_4px_0px_#1A1A1A] disabled:opacity-50 disabled:translate-y-0 disabled:shadow-none"
                             >
-                                {step === steps.length - 1 ? 'Build Roadmap' : 'Continue'}
-                                {step < steps.length - 1 && <ArrowRight size={18} className="ml-2" />}
+                                {step === currentSteps.length - 1 ? 'Build Roadmap' : 'Continue'}
+                                {step < currentSteps.length - 1 && <ArrowRight size={18} className="ml-2" />}
                             </button>
                         </div>
                     </motion.div>
